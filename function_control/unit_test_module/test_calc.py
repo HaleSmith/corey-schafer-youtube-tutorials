@@ -35,10 +35,14 @@ class TestCalc(unittest.TestCase):
         self.assertEqual(calc.divide(10, 5), 2)
         self.assertEqual(calc.divide(-1, 1), -1)
         self.assertEqual(calc.divide(-1, -1), 1)
+        self.assertEqual(calc.divide(5, 2), 2.5)
+        # Must pass arguments as last arguments in error assert check
+        self.assertRaises(ValueError, calc.divide, 10, 0)
+        # Can also check exception via context manager
+        with self.assertRaises(ValueError):
+            calc.divide(10, 0)
 
 # Would need to run via terminal: python -m unittest test_calc.py
 # Otherwise, can run via below:
 if __name__ == '__main__':
     unittest.main()
-
-# Resume at 13:40
